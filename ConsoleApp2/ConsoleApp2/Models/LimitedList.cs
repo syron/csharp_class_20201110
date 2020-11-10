@@ -21,6 +21,14 @@ namespace ConsoleApp2.Models
             {
                 _list.Add(item);
             }
+            else // if list is full
+            {
+                throw new ListIsFullException($"List is full due to max amount = {_maxNumberOfItems}");
+            }
+        }
+
+        public void Sort()
+        {
         }
 
         public void Remove(T item)
@@ -31,6 +39,24 @@ namespace ConsoleApp2.Models
         public int Count()
         {
             return _list.Count;
+        }
+    }
+
+    public class ListIsFullException : Exception
+    {
+        public ListIsFullException()
+        {
+
+        }
+
+        public ListIsFullException(string message) : base(message)
+        {
+
+        }
+
+        public ListIsFullException(string message, Exception inner) : base(message, inner)
+        {
+
         }
     }
 }
